@@ -1,12 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-app.use(bodyParser.json());
 
 const { config } = require('./config/index');
+const moviesApi = require('./routes/movies.js');
 
-app.get('/', (req, res) => {
+moviesApi(app);
+
+app.listen(config.port, () => {
+  console.log(`Listening http://localhost:${config.port}`);
+});
+
+// Rutas de ejemplos anteriores y para el reto
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
+{
+  /*app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
@@ -30,8 +38,5 @@ app.get('/params/:year', (req, res) => {
 app.post('/body', (req, res) => {
   const leap = req.body.year % 4 ? "isn't" : 'is';
   res.send(`${req.body.year} ${leap} leap-year.`);
-});
-
-app.listen(config.port, () => {
-  console.log(`Listening http://localhost:${config.port}`);
-});
+});*/
+}
