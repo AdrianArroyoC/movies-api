@@ -4,10 +4,17 @@ const app = express();
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies.js');
 
+const { logErrors, errorHandler } = require('./utils/middleware/errorHandlers');
+
 // Body parser
 app.use(express.json());
 
+// Rutas
 moviesApi(app);
+
+// Middlewares de error
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(config.port, () => {
   console.log(`Listening http://localhost:${config.port}`);

@@ -12,7 +12,7 @@ function moviesApi(app) {
       const movies = await moviesService.getMovies({ tags });
       res.status(200).json({
         data: movies,
-        message: 'movies listed',
+        message: 'movies listed'
       });
     } catch (err) {
       next(err);
@@ -25,7 +25,7 @@ function moviesApi(app) {
       const movie = await moviesService.getMovie({ movieId });
       res.status(200).json({
         data: movie,
-        message: 'movie retrieved',
+        message: 'movie retrieved'
       });
     } catch (err) {
       next(err);
@@ -38,7 +38,7 @@ function moviesApi(app) {
       const createdMovieId = await moviesService.createMovie({ movie });
       res.status(201).json({
         data: createdMovieId,
-        message: 'movie created',
+        message: 'movie created'
       });
     } catch (err) {
       next(err);
@@ -51,11 +51,11 @@ function moviesApi(app) {
     try {
       const updatedMovieId = await moviesService.updateMovie({
         movieId,
-        movie,
+        movie
       });
       res.status(200).json({
         data: updatedMovieId,
-        message: 'movie updated',
+        message: 'movie updated'
       });
     } catch (err) {
       next(err);
@@ -68,7 +68,7 @@ function moviesApi(app) {
       const deletedMovieId = await moviesService.deleteMovie({ movieId });
       res.status(200).json({
         data: deletedMovieId,
-        message: 'movie deleted',
+        message: 'movie deleted'
       });
     } catch (err) {
       next(err);
