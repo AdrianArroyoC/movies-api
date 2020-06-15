@@ -1,4 +1,5 @@
 const express = require('express');
+const joi = require('@hapi/joi');
 const MoviesService = require('../services/movies');
 
 const {
@@ -29,7 +30,7 @@ function moviesApi(app) {
 
   router.get(
     '/:movieId',
-    validationHandler({ movieId: movieIdSchema }, 'params'),
+    validationHandler(joi.object({ movieId: movieIdSchema }), 'params'),
     async (req, res, next) => {
       const { movieId } = req.params;
       try {
@@ -63,7 +64,7 @@ function moviesApi(app) {
 
   router.put(
     '/:movieId',
-    validationHandler({ movieId: movieIdSchema }, 'params'),
+    validationHandler(joi.object({ movieId: movieIdSchema }), 'params'),
     validationHandler(updateMovieSchema),
     async (req, res, next) => {
       const { movieId } = req.params;
@@ -85,7 +86,7 @@ function moviesApi(app) {
 
   router.delete(
     '/:movieId',
-    validationHandler({ movieId: movieIdSchema }, 'params'),
+    validationHandler(joi.object({ movieId: movieIdSchema }), 'params'),
     async (req, res, next) => {
       const { movieId } = req.params;
       try {
