@@ -1,5 +1,11 @@
 const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const app = express();
+const debug = require('express-debug');
+
+//app.enable('strict routing');
 
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies.js');
@@ -12,8 +18,16 @@ const {
 
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
 
+// CORS
+//app.use(cors());
+app.options(config.cors, cors());
+
 // Body parser
-app.use(express.json());
+//app.use(express.json());
+app.use(bodyParser.json());
+
+// Http Logger
+app.use(morgan(config.dev ? 'dev' : 'tiny'));
 
 // Rutas
 moviesApi(app);
@@ -26,7 +40,11 @@ app.use(logErrors);
 app.use(wrapErrors);
 app.use(errorHandler);
 
+// Debugger (después de las rutas)
+debug(app, {});
+
 app.listen(config.port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Listening http://localhost:${config.port}`);
 });
 
