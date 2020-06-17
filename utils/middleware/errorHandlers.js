@@ -1,5 +1,6 @@
 const boom = require('@hapi/boom');
 const { config } = require('../../config');
+const debug = require('debug')('app:server');
 
 function withErrorStack(error, stack) {
   if (config.dev) {
@@ -9,7 +10,7 @@ function withErrorStack(error, stack) {
 }
 
 function logErrors(err, req, res, next) {
-  console.log(err);
+  debug(err);
   next(err);
 }
 
