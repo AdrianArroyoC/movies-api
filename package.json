@@ -1,7 +1,7 @@
 {
   "name": "movies-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proyecto del curso de Backend con Node.js en la Escuela de JavaScript de Platzi",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --inspect index",
