@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "DEBUG=express:*,app:* nodemon --inspect index",
+    "dev": "nodemon --inspect index",
     "start": "NODE_ENV=production node index",
     "test": "mocha --exit",
     "cover": "nyc npm run test",
