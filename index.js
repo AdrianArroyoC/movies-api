@@ -9,6 +9,7 @@ const debug = require('express-debug');
 
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies.js');
+const userMoviesApi = require('./routes/usersMovies.js');
 
 const {
   logErrors,
@@ -31,6 +32,7 @@ app.use(morgan(config.dev ? 'dev' : 'tiny'));
 
 // Rutas
 moviesApi(app);
+userMoviesApi(app);
 
 // Error 404
 app.use(notFoundHandler);

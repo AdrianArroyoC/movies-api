@@ -128,7 +128,7 @@ describe('routes - movies', () => {
     const movieId = '5ee306da9083a63e7b376de8';
     it('should respond with status 200', (done) => {
       request
-        .put('/api/movies/' + movieId)
+        .delete('/api/movies/' + movieId)
         /*.set('Accept', 'application/json')
         .expect('Content-Type', /json/)*/
         .expect(200, done);
@@ -136,13 +136,13 @@ describe('routes - movies', () => {
 
     it('should respond with the id of the deleted movie', (done) => {
       request
-        .put('/api/movies/' + movieId)
+        .delete('/api/movies/' + movieId)
         /*.set('Accept', 'application/json')
         .expect('Content-Type', /json/)*/
         .end((err, res) => {
           assert.deepEqual(res.body, {
             data: moviesMock[0].id,
-            message: 'movie updated'
+            message: 'movie deleted'
           });
           done();
         });
